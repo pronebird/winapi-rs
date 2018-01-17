@@ -8,7 +8,7 @@ fn main() {
     use std::env::var;
     use std::path::Path;
     println!("cargo:rerun-if-env-changed=WINAPI_NO_BUNDLED_LIBRARIES");
-    if var("WINAPI_NO_BUNDLED_LIBRARIES").is_some() {
+    if var("WINAPI_NO_BUNDLED_LIBRARIES").is_ok() {
         return;
     }
     if var("TARGET").map(|target| target == "x86_64-pc-windows-gnu").unwrap_or(false) {

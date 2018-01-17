@@ -380,14 +380,14 @@ impl Graph {
 fn library_prefix() -> &'static str {
     if var("TARGET").map(|target|
         target == "i686-pc-windows-gnu" || target == "x86_64-pc-windows-gnu"
-    ).unwrap_or(false) && var("WINAPI_NO_BUNDLED_LIBRARIES").is_none() {
+    ).unwrap_or(false) && var("WINAPI_NO_BUNDLED_LIBRARIES").is_err() {
         "winapi_"
     } else {
         ""
     }
 }
 fn library_kind() -> &'static str {
-    if var("WINAPI_STATIC_NOBUNDLE").is_some() {
+    if var("WINAPI_STATIC_NOBUNDLE").is_ok() {
         "static-nobundle"
     } else {
         "dylib"
